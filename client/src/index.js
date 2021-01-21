@@ -2,15 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import App from './App';
-import LoginForm from './LoginForm';
+//import LoginForm from './Components/LoginForm';
 import reportWebVitals from './reportWebVitals';
+import App from './App';
 
 ReactDOM.render(
   <React.StrictMode>
-    <LoginForm />
+    <App/>
   </React.StrictMode>,
-  document.querySelector('#container')
+  document.getElementById('root')
 );
 
 

@@ -6,6 +6,9 @@ class LoginForm extends Component {
         const formStyle = {
             margin: 50
         };
+        const buttonStyle = {
+            marginTop: 5
+        }
         return (
             <Form style={formStyle}>
                 <Form.Group controlId="joinForm">
@@ -18,14 +21,14 @@ class LoginForm extends Component {
                     <Form.Control type="text" ref={ref => (this.joinName = ref)}  placeholder="NAME"/>
                     <Form.Label>PASSWORD</Form.Label>
                     <Form.Control type="password" ref={ref => (this.joinPw = ref)}  placeholder="Password"/>
-                    <Button variant="primary" type="button">회원가입</Button>
+                    <Button style={buttonStyle} variant="primary" type="button">회원가입</Button>
                 </Form.Group>
                 <Form.Group controlId="loginForm">
                     <Form.Label>ID</Form.Label>
                     <Form.Control type="text" ref={ref => (this.loginID = ref)}  placeholder="ID"/>
                     <Form.Label>PASSWORD</Form.Label>
                     <Form.Control type="password" ref={ref => (this.loginPw = ref)}   placeholder="Password"/>
-                    <Button variant="primary" type="button">로그인</Button>
+                    <Button style={buttonStyle} variant="primary" type="button">로그인</Button>
                 </Form.Group>
             </Form>
         )
