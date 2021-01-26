@@ -20,26 +20,27 @@ const styles = theme => ({
   }
 });
 
-const customer = [{
-  'id': 1,
-  'name': '황대건',
-  'phoneNumber': '010',
-  'doctor': 'dg',
-  'birthDay': '900604',
-  'visitDay': '20210121'
-},
-{
-  'id': 2,
-  'name': '나라인포',
-  'phoneNumber': '010',
-  'doctor': 'dg',
-  'birthDay': '900604',
-  'visitDay': '20210121'
-},
-]
-
 
 class App extends Component{
+
+  //state: 변경될 수 있는 데이터
+  //props: 변경될 수 없는 데이터
+  state = {
+    customers:""
+  }
+
+  componentDidMount(){
+    this.callApi()
+      .then(res=> this.setState({customers:res}))
+      .catch(err => console.log(err));
+  }
+
+  callApi = async () => {
+    const response = await fetch('/customers');
+    const body = await response.json();
+    return body;
+  }
+
   render() {
     const {classes} = this.props;
     return (
@@ -57,11 +58,11 @@ class App extends Component{
               </TableRow>
             </TableHead>
             <TableBody>
-              {customer.map(c => {
+              {this.state.customers ? this.state.customers.map(c => {
                 return <Customer
                   key={c.id} id={c.id} name={c.name} phoneNumber={c.phoneNumber} doctor={c.doctor} birthDay={c.birthDay} visitDay={c.visitDay}
                 />
-              })}
+              }) : ""}
             </TableBody>
           </Table>
         </Paper>

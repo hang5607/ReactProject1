@@ -21,8 +21,25 @@ const connection = mysql.createConnection({
 
 connection.connect();
 
-app.get('/api/hello', (req, res) => {
-res.send({ message: 'Hello Express!' });
+app.get('/customers', (req, res) => {
+    res.send([
+        {
+            'id': 1,
+            'name': '황대건',
+            'phoneNumber': '010',
+            'doctor': 'dg',
+            'birthDay': '900604',
+            'visitDay': '20210121'
+          },
+          {
+            'id': 2,
+            'name': '나라인포',
+            'phoneNumber': '010',
+            'doctor': 'dg',
+            'birthDay': '900604',
+            'visitDay': '20210121'
+          }
+    ]);
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
