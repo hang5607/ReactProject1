@@ -22,24 +22,12 @@ const connection = mysql.createConnection({
 connection.connect();
 
 app.get('/customers', (req, res) => {
-    res.send([
-        {
-            'id': 1,
-            'name': '황대건',
-            'phoneNumber': '010',
-            'doctor': 'dg',
-            'birthDay': '900604',
-            'visitDay': '20210121'
-          },
-          {
-            'id': 2,
-            'name': '나라인포',
-            'phoneNumber': '010',
-            'doctor': 'dg',
-            'birthDay': '900604',
-            'visitDay': '20210121'
-          }
-    ]);
+    connection.query(
+      'select * from bori',
+      (err,rows,fields) => {
+        res.send(rows);
+      }
+    )
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
