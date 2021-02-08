@@ -30,10 +30,24 @@ class App extends Component{
 
   //state: 변경될 수 있는 데이터
   //props: 변경될 수 없는 데이터
-  state = {
-    customers:"",
-    completed: 0
+  constructor(props) {
+    super(props);
+    this.state = {
+      customers:'',
+      completed: 0
+    }
   }
+
+  stateRefresh = () => {
+    this.setState({
+      customers: '',
+      completed:0
+    });
+    this.callApi()
+      .then(res=> this.setState({customers:res}))
+      .catch(err => console.log(err));
+  }
+  
 
   componentDidMount(){
     this.timer = setInterval(this.progress, 20);
@@ -85,7 +99,7 @@ class App extends Component{
             </TableBody>
           </Table>
         </Paper>
-        <CustomerAdd/>
+        <CustomerAdd stateRefresh={this.stateRefresh}/>
       </div>
       
     )

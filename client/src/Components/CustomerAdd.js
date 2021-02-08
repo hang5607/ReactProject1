@@ -19,7 +19,15 @@ class CustomerAdd extends React.Component {
         this.addCustomer()
             .then((response) => {
                 console.log(response.data);
+                this.props.stateRefresh();
             })
+        this.setState({
+            pName: '',
+            phoneNumber: '',
+            doctor: '',
+            birthday: '',
+            visitDay: ''
+        })
     }
 
     handleValueChange = (e) => {
@@ -34,8 +42,7 @@ class CustomerAdd extends React.Component {
             name: this.state.pName,
             phoneNumber: this.state.phoneNumber,
             doctor: this.state.doctor,
-            birthday: this.state.birthday,
-            visitDay: this.state.visitDay
+            birthday: this.state.birthday
         }
         return post(url,data);
     }
@@ -48,7 +55,7 @@ class CustomerAdd extends React.Component {
                 핸드폰 번호: <input type="text" name="phoneNumber" value={this.state.phoneNumber} onChange={this.handleValueChange}/><br/>
                 등록자: <input type="text" name="doctor" value={this.state.doctor} onChange={this.handleValueChange}/><br/>
                 생년월일: <input type="text" name="birthday" value={this.state.birthday} onChange={this.handleValueChange}/><br/>
-                방문날짜: <input type="text" name="visitDay" value={this.state.visitDay} onChange={this.handleValueChange}/><br/>
+                {/* 방문날짜: <input type="text" name="visitDay" value={this.state.visitDay} onChange={this.handleValueChange}/><br/> */}
                 <button type="submit">추가하기</button>
             </form>
         )

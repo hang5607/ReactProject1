@@ -27,7 +27,24 @@ app.get('/customers', (req, res) => {
       (err,rows,fields) => {
         res.send(rows);
       }
-    )
+    );
+});
+
+app.post('/customers',(req,res) => {
+  let sql = 'insert into bori values (null,?,?,?,?,now())';
+  let name = req.body.name;
+  let phoneNumber = req.body.phoneNumber;
+  let doctor = req.body.doctor;
+  let birthday = req.body.birthday;
+  let params = [name,phoneNumber,doctor,birthday];
+
+  connection.query(sql,params,
+    (err,rows,fields) => {
+      res.send(rows);
+      // console.log(err);
+      // console.log(rows);
+    }
+  );
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
