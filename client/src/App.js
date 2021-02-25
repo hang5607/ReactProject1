@@ -36,6 +36,7 @@ class App extends Component{
       customers:'',
       completed: 0
     }
+    this.stateRefresh = this.stateRefresh.bind(this);
   }
 
   stateRefresh = () => {
@@ -81,11 +82,12 @@ class App extends Component{
                 <TableCell>등록자</TableCell>
                 <TableCell>생년월일</TableCell>
                 <TableCell>방문날짜</TableCell>
+                <TableCell>설정</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {this.state.customers ? this.state.customers.map(c => {
-                return <Customer
+                return <Customer stateRefresh={this.stateRefresh}
                   key={c.id} id={c.id} name={c.name} phoneNumber={c.phoneNumber} doctor={c.doctor} birthday={c.birthday} visitDay={c.visitDay}
                 />
               }) : 
